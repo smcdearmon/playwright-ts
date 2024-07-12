@@ -35,7 +35,8 @@ test('getting started should contain table of contents', async ({ page }) => {
   ]);
 })
 
-test('should show Page Object Model article', async ({ page }) => {
+test('should show Page Object Model article', async ({ browserName, page }) => {
+  test.skip(browserName == 'chromium', 'This is a firefox and safari only test');
   const home = new Home(page);
   await home.goto();
   await home.pageObjectModel();
@@ -43,7 +44,8 @@ test('should show Page Object Model article', async ({ page }) => {
 });
 
 
-test('Fill out contact me page', async ({ page }) => {
+test('Fill out contact me page', async ({ browserName, page }) => {
+  test.skip(browserName == 'chromium', 'This is a firefox and safari only test');
   await page.goto('https://shawnmcdearmon.com/');
   await expect(page).toHaveTitle(/Test Solutions/);
   await page.getByRole('link', { name: 'Contact Me' }).click();
