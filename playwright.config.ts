@@ -38,7 +38,7 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'],
         headless: true,
         launchOptions: {
-          slowMo: 2000
+          slowMo: 0
         }
       },
     },
@@ -48,7 +48,7 @@ export default defineConfig({
       use: { ...devices['Desktop Firefox'],
         headless: true,
         launchOptions: {
-          slowMo: 2000
+          slowMo: 0
         }
        },
     },
@@ -58,7 +58,7 @@ export default defineConfig({
       use: { ...devices['Desktop Safari'],
         headless: true,
         launchOptions: {
-          slowMo: 2000
+          slowMo: 0
         }
       },
     },
@@ -69,16 +69,16 @@ export default defineConfig({
       use: { ...devices['Pixel 7'],
         headless: true,
         launchOptions: {
-          slowMo: 2000
+          slowMo: 0
         }
       },
     },
     {
       name: 'Mobile Safari',
-      use: { ...devices['iPhone 14'],
+      use: { ...devices['headless: true'],
         headless: true,
         launchOptions: {
-          slowMo: 2000
+          slowMo: 0
         }
       },
     },
