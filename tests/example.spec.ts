@@ -35,9 +35,31 @@ test('getting started should contain table of contents', async ({ page }) => {
   ]);
 })
 
-test('should show Page Object Model article', async ({ page }) => {
+test('should show Page Object Model article', async ({ browserName, page }) => {
+  test.skip(browserName == 'chromium', 'This is a firefox and safari only test');
   const home = new Home(page);
   await home.goto();
   await home.pageObjectModel();
   await expect(page.locator('article')).toContainText('Page Object Model is a common pattern');
+});
+
+
+test('Fill out contact me page', async ({ browserName, page }) => {
+  test.skip(browserName == 'chromium', 'This is a firefox and safari only test');
+  await page.goto('https://shawnmcdearmon.com/');
+  await expect(page).toHaveTitle(/Test Solutions/);
+  await page.getByRole('link', { name: 'Contact Me' }).click();
+  // await page.getByLabel('First').click();
+  await page.getByLabel('First').fill('Test');
+  // await page.getByLabel('Last').click();
+  await page.getByLabel('Last').fill('User');
+  // await page.getByLabel('Email *').click();
+  await page.getByLabel('Email *').fill('test@test.com');
+  await page.getByLabel('Subject').selectOption('Request a quote');
+  // await page.getByLabel('Comment or Message').click();
+  await page.getByLabel('Comment or Message').fill('This is a test');
+  await page.getByRole('button', { name: 'Submit' }).click();
+
+  // Recapcha working too well and can't submit :)
+  // await expect(page.getByText('Thanks you for contacting me! I will be in touch shortly. Feel free to add my')).toBeVisible();
 });

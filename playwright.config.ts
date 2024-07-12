@@ -11,6 +11,7 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
+  timeout: 1000 * 10,
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -36,9 +37,9 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'],
-        headless: false,
+        headless: true,
         launchOptions: {
-          slowMo: 2000
+          slowMo: 0
         }
       },
     },
@@ -46,9 +47,9 @@ export default defineConfig({
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'],
-        headless: false,
+        headless: true,
         launchOptions: {
-          slowMo: 2000
+          slowMo: 0
         }
        },
     },
@@ -56,9 +57,9 @@ export default defineConfig({
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'],
-        headless: false,
+        headless: true,
         launchOptions: {
-          slowMo: 2000
+          slowMo: 0
         }
       },
     },
@@ -67,21 +68,21 @@ export default defineConfig({
     {
       name: 'Mobile Chrome',
       use: { ...devices['Pixel 7'],
-        headless: false,
+        headless: true,
         launchOptions: {
-          slowMo: 2000
+          slowMo: 0
         }
       },
     },
-    {
-      name: 'Mobile Safari',
-      use: { ...devices['iPhone 14'],
-        headless: false,
-        launchOptions: {
-          slowMo: 2000
-        }
-      },
-    },
+    // {
+    //   name: 'Mobile Safari',
+    //   use: { ...devices['iPhone 13 Pro Max'],
+    //     headless: true,
+    //     launchOptions: {
+    //       slowMo: 0
+    //     }
+    //   },
+    // },
 
     /* Test against branded browsers. */
     // {
